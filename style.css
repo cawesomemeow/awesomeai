@@ -46,13 +46,24 @@ body {
 
 /* Footer Styles */
 .footer {
-    background-color: #333;
+    background-color: #ff6b6b; /* Farbe des Headers */
     color: #fff;
     text-align: center;
     padding: 20px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.footer-discord {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-discord img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 /* Widgetbot Styles */
@@ -62,8 +73,8 @@ body {
     right: 20px;
     background-color: #ff6b6b;
     color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
