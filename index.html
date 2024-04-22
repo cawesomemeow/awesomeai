@@ -8,6 +8,62 @@
     <title>awesome.meow</title>
 </head>
 <body>
+    <header class="header">
+        <h1 class="header-title">awesome.meow</h1>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Willkommen bei awesome.meow!</h2>
+            <p>Genieße die süßen Dinge des Lebens!</p>
+            <img src="https://placekitten.com/300/300" alt="Süßes Kätzchen">
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 awesome.meow. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <!-- Widgetbot Widget -->
+    <div id="widgetbot-toggle" class="widgetbot-toggle">
+        Klicke hier für den Chat!
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer></script>
+    <script>
+        document.getElementById("widgetbot-toggle").addEventListener("click", function() {
+            var crate = document.createElement('div');
+            crate.setAttribute('class', 'crate');
+            crate.innerHTML = `
+                <div class="crate-content">
+                    <button class="crate-close">×</button>
+                    <iframe
+                        src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3/index.html#server=1188035023098630164&channel=1231892544430800967"
+                        title="Widgetbot Chat"
+                        width="800"
+                        height="600"
+                    ></iframe>
+                </div>
+            `;
+            document.body.appendChild(crate);
+
+            var closeButton = crate.querySelector('.crate-close');
+            closeButton.addEventListener('click', function() {
+                crate.remove();
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="cat.png">
+    <link rel="stylesheet" href="style.css">
+    <title>awesome.meow</title>
+</head>
+<body>
     <div class="container">
         <h1>Willkommen bei awesome.meow!</h1>
         <p>Genieße die süßen Dinge des Lebens!</p>
