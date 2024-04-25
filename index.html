@@ -24,37 +24,5 @@
      <p>&copy; 2024 awesome.meow. Alle Rechte vorbehalten.</p>
     </footer>
 
-    <!-- Widgetbot Widget -->
-    <div id="widgetbot-toggle" class="widgetbot-toggle">
-        <img src="discord.png" alt="Discord">
-    </div>
-     <script>
-        const crate = new Crate({
-            server: '1188035023098630164',
-            channel: '1231892544430800967'
-        });
-        
-        document.getElementById("widgetbot-toggle").addEventListener("click", function() {
-            var crateDiv = document.createElement('div');
-            crateDiv.setAttribute('class', 'crate');
-            crateDiv.innerHTML = `
-                <div class="crate-content">
-                    <button class="crate-close">×</button>
-                    <iframe
-                        src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3/index.html"
-                        title="Widgetbot Chat"
-                        width="800"
-                        height="600"
-                    ></iframe>
-                </div>
-            `;
-            document.body.appendChild(crateDiv);
-
-            var closeButton = crateDiv.querySelector('.crate-close');
-            closeButton.addEventListener('click', function() {
-                crateDiv.remove();
-            });
-        });
-    </script>
-</body>
+   </body>
 </html>
