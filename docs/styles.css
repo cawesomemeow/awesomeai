@@ -21,32 +21,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styles */
-.header {
-    background-color: #ff6b6b;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.header-title {
-    color: #fff;
-    font-size: 36px;
-}
-
-/* Main Content Styles */
-.main-content {
-    padding: 50px 0;
-}
-
-.main-content img {
-    width: 300px;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Navigation Styles */
 nav {
-    background-color: rgba(255, 107, 107, 0.7);
+    background-color: #ff6b6b;
     padding: 10px 0;
 }
 
@@ -54,10 +31,13 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: flex; /* Neue Zeile: Alle Listenelemente nebeneinander anzeigen */
+    justify-content: center; /* Neue Zeile: Zentrieren der Listenelemente */
 }
 
 nav ul li {
     display: inline;
+    margin: 0 10px; /* Neue Zeile: Abstand zwischen den Listenelementen */
 }
 
 nav ul li a {
