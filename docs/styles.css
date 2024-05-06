@@ -31,13 +31,12 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Neue Zeile: Alle Listenelemente nebeneinander anzeigen */
-    justify-content: center; /* Neue Zeile: Zentrieren der Listenelemente */
+    display: flex; /* Alle Listenelemente nebeneinander anzeigen */
+    justify-content: center; /* Zentrieren der Listenelemente */
 }
 
 nav ul li {
     display: inline;
-    margin: 0 10px; /* Neue Zeile: Abstand zwischen den Listenelementen */
 }
 
 nav ul li a {
