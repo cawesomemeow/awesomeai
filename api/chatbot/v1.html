@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assistant Chat</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div id="chat">
@@ -26,18 +25,16 @@
                 "model": "default"
             };
 
-            $.ajax({
-                url: "http://api.discord.rocks/ask",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(jsonLoad),
-                success: function(response) {
-                    displayMessage(response);
+            fetch("http://api.discord.rocks/ask", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                error: function(xhr, status, error) {
-                    console.error("Error:", error);
-                }
-            });
+                body: JSON.stringify(jsonLoad)
+            })
+            .then(response => response.json())
+            .then(data => displayMessage(data.response))
+            .catch(error => console.error("Error:", error));
         }
 
         function displayMessage(message) {
