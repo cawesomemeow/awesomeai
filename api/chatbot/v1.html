@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awesome AI</title>
+    <title>GPT-4 Chat</title>
     <style>
         /* Dein CSS-Styling hier */
     </style>
@@ -13,7 +13,7 @@
     <a href="https://discord.gg/pMeMK4FwXB" class="discord-link" target="_blank">Join our Discord server</a>
 
     <div class="container">
-        <h1>Global LLM Chat</h1>
+        <h1>GPT-4 Chat</h1>
         <div id="chat-window" class="chat-window"></div>
         <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
         <button id="send-btn" class="btn-send">Send</button>
@@ -38,7 +38,7 @@
                 userInput.value = '';
 
                 try {
-                    const response = await fetch('http://api.discord.rocks/ask', {
+                    const response = await fetch('http://gpt4.discord.rocks/ask', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -47,7 +47,7 @@
                             "messages": [
                                 {"role": "user", "content": message}
                             ],
-                            "model": "claude-3-opus"
+                            "model": "gpt-4-turbo-preview"
                         })
                     });
                     const data = await response.json();
