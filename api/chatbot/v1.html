@@ -3,69 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPT-4 Chat</title>
-    <style>
-        /* Dein CSS-Styling hier */
-    </style>
+    <title>Assistant Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <!-- Discord Join Link -->
-    <a href="https://discord.gg/pMeMK4FwXB" class="discord-link" target="_blank">Join our Discord server</a>
-
-    <div class="container">
-        <h1>GPT-4 Chat</h1>
-        <div id="chat-window" class="chat-window"></div>
-        <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
-        <button id="send-btn" class="btn-send">Send</button>
+    <div id="chat">
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <script>
-        const chatWindow = document.getElementById('chat-window');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            var jsonLoad = {
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": userInput
+                    }
+                ],
+                "model": "default"
+            };
 
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        async function sendMessage() {
-            const message = userInput.value.trim();
-            if (message !== '') {
-                appendMessage('You: ' + message, 'user');
-                userInput.value = '';
-
-                try {
-                    const response = await fetch('http://gpt4.discord.rocks/ask', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            "messages": [
-                                {"role": "user", "content": message}
-                            ],
-                            "model": "gpt-4-turbo-preview"
-                        })
-                    });
-                    const data = await response.json();
-                    const botResponse = data.response;
-                    appendMessage('Bot: ' + botResponse, 'bot');
-                } catch (error) {
-                    console.error('Error:', error);
-                    appendMessage('Error: Failed to send message.', 'error');
+            $.ajax({
+                url: "http://api.discord.rocks/ask",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(jsonLoad),
+                success: function(response) {
+                    displayMessage(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
                 }
-            }
+            });
         }
 
-        function appendMessage(message, role) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', role);
-            messageElement.innerText = message;
-            chatWindow.appendChild(messageElement);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
+        function displayMessage(message) {
+            var chatMessages = document.getElementById("chat-messages");
+            var responseDiv = document.createElement("div");
+            responseDiv.innerHTML = "<b>Assistant:</b> " + message;
+            chatMessages.appendChild(responseDiv);
         }
     </script>
 </body>
