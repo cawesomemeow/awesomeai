@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global LLM Chat</title>
     <style>
-        /* CSS-Styling hier */
+        /* Dein CSS-Styling hier */
     </style>
 </head>
 <body>
+    <!-- Discord Join Link -->
+    <a href="https://discord.gg/pMeMK4FwXB" class="discord-link" target="_blank">Join our Discord server</a>
+
     <div class="container">
         <h1>Global LLM Chat</h1>
         <div id="chat-window" class="chat-window"></div>
@@ -40,7 +43,12 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ messages: [{ role: 'user', content: message }] })
+                        body: JSON.stringify({
+                            "messages": [
+                                {"role": "user", "content": message}
+                            ],
+                            "model": "claude-3-opus"
+                        })
                     });
                     const data = await response.json();
                     const botResponse = data.response;
