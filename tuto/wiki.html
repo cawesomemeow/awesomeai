@@ -62,6 +62,11 @@
                 margin-left: 0; /* Kein Abstand für das Menü bei kleinen Bildschirmen */
             }
         }
+
+        /* Klasse zum Ausblenden von Sektionen */
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +106,24 @@
 
         menuToggle.addEventListener('click', function() {
             sideMenu.classList.toggle('active');
+        });
+
+        // JavaScript zum Anzeigen der ausgewählten Sektion im Hauptinhalt
+        const menuLinks = document.querySelectorAll('#side-menu a');
+        const sections = document.querySelectorAll('section');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                sections.forEach(section => {
+                    if (section.getAttribute('id') === targetId) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
         });
     </script>
 </body>
