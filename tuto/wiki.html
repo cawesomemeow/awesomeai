@@ -47,6 +47,11 @@
             background-color: #555;
         }
 
+        /* Andersfarbige Farbe für ausgewählten Menüpunkt */
+        #side-menu ul li a.active {
+            background-color: #4CAF50; /* Grün */
+        }
+
         /* Stil für den Hauptinhalt */
         #main-content {
             margin-left: 250px; /* Platz für das Menü */
@@ -77,6 +82,7 @@
     <!-- Seitenmenü -->
     <nav id="side-menu">
         <ul>
+            <li><a href="#intro" class="active">Wiki erklären</a></li>
             <li><a href="#section1">Section 1</a></li>
             <li><a href="#section2">Section 2</a></li>
             <li><a href="#section3">Section 3</a></li>
@@ -90,13 +96,13 @@
         </ul>
     </nav>
     <main id="main-content">
-        <section id="section1">
+        <section id="intro">
+            <h2>Willkommen im cawesome-meow Wiki!</h2>
+            <p>Hier finden Sie alle Informationen zu unserem Thema. Wählen Sie eine Sektion im Menü aus, um mehr zu erfahren.</p>
+        </section>
+        <section id="section1" class="hidden">
             <h2>Section 1</h2>
             <p>This is the content of section 1.</p>
-        </section>
-        <section id="section2">
-            <h2>Section 2</h2>
-            <p>This is the content of section 2.</p>
         </section>
         <!-- Weitere Sektionen hier -->
     </main>
@@ -112,7 +118,7 @@
             sideMenu.classList.toggle('active');
         });
 
-        // JavaScript zum Anzeigen der ausgewählten Sektion im Hauptinhalt
+        // JavaScript zum Anzeigen der ausgewählten Sektion im Hauptinhalt und Hervorheben des ausgewählten Menüpunkts
         const menuLinks = document.querySelectorAll('#side-menu a');
         const sections = document.querySelectorAll('section');
 
@@ -127,6 +133,12 @@
                         section.classList.add('hidden');
                     }
                 });
+
+                // Hervorheben des ausgewählten Menüpunkts
+                menuLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
     </script>
