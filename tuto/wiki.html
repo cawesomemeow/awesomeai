@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="../cat.png">
     <style>
-        /* Stil für das Menü */
+        /* Stil für das Seitenmenü */
         #side-menu {
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 0;
+            top: 0;
+            left: -250px; /* Startposition außerhalb des Bildschirms */
+            width: 250px;
+            height: 100%;
             background-color: #333;
             color: #fff;
-            padding: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
+            transition: left 0.3s ease;
             z-index: 1000;
+        }
+
+        #side-menu.active {
+            left: 0; /* Position des aktiven Menüs */
         }
 
         #side-menu ul {
@@ -35,7 +38,7 @@
             color: #fff;
             text-decoration: none;
             display: block;
-            padding: 5px;
+            padding: 10px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
@@ -43,11 +46,28 @@
         #side-menu ul li a:hover {
             background-color: #555;
         }
+
+        /* Stil für den Hauptinhalt */
+        #main-content {
+            margin-left: 250px; /* Platz für das Menü */
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #side-menu {
+                width: 200px;
+            }
+
+            #main-content {
+                margin-left: 0; /* Kein Abstand für das Menü bei kleinen Bildschirmen */
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Das cawesome-meow Wiki</h1>
+        <button id="menu-toggle">☰ Menü</button> <!-- Button zum Ein-/Ausklappen des Menüs -->
     </header>
     <!-- Seitenmenü -->
     <nav id="side-menu">
@@ -64,75 +84,24 @@
             <li><a href="#section10">Section 10</a></li>
         </ul>
     </nav>
-    <main>
+    <main id="main-content">
         <section id="section1">
             <h2>Section 1</h2>
             <p>This is the content of section 1.</p>
         </section>
-        <section id="section2">
-            <h2>Section 2</h2>
-            <p>This is the content of section 2.</p>
-        </section>
-        <section id="section3">
-            <h2>Section 3</h2>
-            <p>This is the content of section 3.</p>
-        </section>
-        <section id="section4">
-            <h2>Section 4</h2>
-            <p>This is the content of section 4.</p>
-        </section>
-        <section id="section5">
-            <h2>Section 5</h2>
-            <p>This is the content of section 5.</p>
-        </section>
-        <section id="section6">
-            <h2>Section 6</h2>
-            <p>This is the content of section 6.</p>
-        </section>
-        <section id="section7">
-            <h2>Section 7</h2>
-            <p>This is the content of section 7.</p>
-        </section>
-        <section id="section8">
-            <h2>Section 8</h2>
-            <p>This is the content of section 8.</p>
-        </section>
-        <section id="section9">
-            <h2>Section 9</h2>
-            <p>This is the content of section 9.</p>
-        </section>
-        <section id="section10">
-            <h2>Section 10</h2>
-            <p>This is the content of section 10.</p>
-        </section>
+        <!-- Weitere Sektionen hier -->
     </main>
     <footer>
         <p>&copy; 2024 My Documentation Page. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
     <script>
-        // Funktion zum Aktualisieren des aktiven Links im Menü basierend auf der sichtbaren Sektion
-        function updateActiveLink() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const top = section.getBoundingClientRect().top;
-                if (top >= 0 && top <= window.innerHeight) {
-                    const id = section.getAttribute('id');
-                    const activeLink = document.querySelector(`#side-menu a[href="#${id}"]`);
-                    document.querySelectorAll('#side-menu a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    activeLink.classList.add('active');
-                }
-            });
-        }
+        // JavaScript zum Ein-/Ausklappen des Menüs
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
 
-        // Event-Listener, um die aktive Sektion basierend auf dem Scrollen zu aktualisieren
-        window.addEventListener('scroll', updateActiveLink);
-        window.addEventListener('resize', updateActiveLink);
-
-        // Initialisierung
-        updateActiveLink();
+        menuToggle.addEventListener('click', function() {
+            sideMenu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
