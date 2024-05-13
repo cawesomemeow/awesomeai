@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="../cat.png">
     <style>
+        /* Allgemeine Stile */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
         /* Stil für das Seitenmenü */
         #side-menu {
             position: fixed;
@@ -17,6 +26,7 @@
             background-color: #333;
             color: #fff;
             z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
         #side-menu ul {
@@ -33,7 +43,7 @@
             color: #fff;
             text-decoration: none;
             display: block;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
@@ -50,19 +60,7 @@
         /* Stil für den Hauptinhalt */
         #main-content {
             margin-left: 250px; /* Platz für das Menü */
-            padding: 20px 20px 120px 270px; /* Top, Right, Bottom, Left */
-            box-sizing: border-box; /* Padding wird innerhalb der Gesamtgröße des Elements berechnet */
-        }
-
-        @media (max-width: 768px) {
-            #side-menu {
-                width: 200px;
-            }
-
-            #main-content {
-                margin-left: 0; /* Kein Abstand für das Menü bei kleinen Bildschirmen */
-                padding: 20px; /* Padding für kleine Bildschirme */
-            }
+            padding: 20px;
         }
 
         /* Klasse zum Ausblenden von Sektionen */
@@ -70,16 +68,33 @@
             display: none;
         }
 
+        /* Stil für den Header */
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
         /* Stil für den Footer */
         footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
             background-color: #222;
             color: #fff;
             text-align: center;
             padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
             font-size: 14px;
         }
     </style>
