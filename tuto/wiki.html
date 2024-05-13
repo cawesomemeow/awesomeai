@@ -50,7 +50,8 @@
         /* Stil für den Hauptinhalt */
         #main-content {
             margin-left: 250px; /* Platz für das Menü */
-            padding: 20px;
+            padding: 20px 20px 20px 270px; /* Top, Right, Bottom, Left */
+            box-sizing: border-box; /* Padding wird innerhalb der Gesamtgröße des Elements berechnet */
         }
 
         @media (max-width: 768px) {
@@ -60,6 +61,7 @@
 
             #main-content {
                 margin-left: 0; /* Kein Abstand für das Menü bei kleinen Bildschirmen */
+                padding: 20px; /* Padding für kleine Bildschirme */
             }
         }
 
@@ -92,7 +94,7 @@
     <main id="main-content">
         <section id="intro">
             <h2>Willkommen im cawesome-meow Wiki!</h2>
-            <p>Hier finden Sie alle Informationen zu unserem Thema. Wählen Sie eine Sektion im Menü aus, um mehr zu erfahren.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus auctor turpis, sed ultricies ligula scelerisque in. Nulla facilisi. Suspendisse potenti. Nulla facilisi. Vivamus ac nibh vestibulum, lobortis mi id, tristique velit. Nullam molestie feugiat lacinia.</p>
         </section>
         <section id="section1" class="hidden">
             <h2>Section 1</h2>
