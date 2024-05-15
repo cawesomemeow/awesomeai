@@ -36,18 +36,22 @@
             max-height: 300px;
             overflow-y: auto;
         }
-        .message {
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             margin-bottom: 20px;
+        }
+        .message {
             padding: 10px;
             border-radius: 20px;
-            max-width: 70%;
             word-wrap: break-word;
+            margin-bottom: 5px;
         }
         .user-message {
             background-color: #4CAF50;
             color: #fff;
             align-self: flex-end;
-            margin-left: auto;
         }
         .bot-message {
             background-color: #ddd;
@@ -120,10 +124,13 @@
 
     // Funktion zum Anzeigen von Nachrichten im Chat-Interface
     function displayMessage(message, role) {
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container');
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', role + '-message');
         messageElement.textContent = message;
-        chatOutput.appendChild(messageElement);
+        messageContainer.appendChild(messageElement);
+        chatOutput.appendChild(messageContainer);
         // Zum Ende des Chat-Outputs scrollen
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
