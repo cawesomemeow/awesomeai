@@ -5,63 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awesome-AI Chatbot</title>
     <style>
-        /* Stil für das Chat-Interface */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            width: 100%;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            overflow: hidden;
         }
-        .message-input {
-            width: calc(100% - 80px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-        }
-        .btn-send {
-            width: 80px;
-            padding: 10px;
-            border: none;
-            border-radius: 0 5px 5px 0;
+        .header {
             background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            outline: none;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
         }
         .chat-output {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 20px;
             max-height: 300px;
             overflow-y: auto;
         }
-        .user-message, .bot-message {
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
+        .message {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            max-width: 70%;
+            word-wrap: break-word;
         }
         .user-message {
             background-color: #4CAF50;
-            color: white;
+            color: #fff;
             align-self: flex-end;
+            margin-left: auto;
         }
         .bot-message {
             background-color: #ddd;
-            color: black;
+            color: #333;
+        }
+        .message-input-container {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+        }
+        .btn-send {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 25px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-send:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Chat Interface with GPT-4</h1>
+    <div class="header">
+        <h1>Chat Interface with GPT-4</h1>
+    </div>
     <div class="chat-output" id="chat-output"></div>
-    <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
-    <button id="send-btn" class="btn-send">Send</button>
+    <div class="message-input-container">
+        <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
+        <button id="send-btn" class="btn-send">Send</button>
+    </div>
 </div>
 
 <script>
@@ -91,7 +121,7 @@
     // Funktion zum Anzeigen von Nachrichten im Chat-Interface
     function displayMessage(message, role) {
         const messageElement = document.createElement('div');
-        messageElement.classList.add(role + '-message');
+        messageElement.classList.add('message', role + '-message');
         messageElement.textContent = message;
         chatOutput.appendChild(messageElement);
         // Zum Ende des Chat-Outputs scrollen
@@ -103,7 +133,7 @@
         const message = userInput.value.trim();
         if (message !== '') {
             messages.push({ "role": "user", "content": message });
-            displayMessage("> " + message, 'user');
+            displayMessage(message, 'user');
             const botResponse = await sendMessage();
             messages.push({ "role": "assistant", "content": botResponse });
             displayMessage(botResponse, 'bot');
