@@ -13,7 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
         .container {
             max-width: 600px;
@@ -83,6 +83,15 @@
         .btn-send:hover {
             background-color: #45a049;
         }
+        footer {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +106,10 @@
         <button id="send-btn" class="btn-send">Send</button>
     </div>
 </div>
+
+<footer>
+    &copy; <a href="../">2024 cawesome-meow</a> Chatbot. All rights reserved.
+</footer>
 
 <script>
     const userInput = document.getElementById('user-input');
@@ -158,3 +171,4 @@
 
 </body>
 </html>
+
