@@ -21,17 +21,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styles */
-.header {
-    background-color: #ff6b6b;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.header-title {
-    color: #fff;
-    font-size: 36px;
-}
 
 /* Main Content Styles */
 .main-content {
@@ -44,7 +33,16 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-        footer {
+.footer {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+.header {
             background-color: #4CAF50;
             color: #fff;
             text-align: center;
