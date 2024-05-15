@@ -3,46 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistant Chat</title>
+    <title>Chat Interface with GPT-4</title>
+    <style>
+        /* Stil für das Chat-Interface */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .message-input {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .btn-send {
+            width: 80px;
+            padding: 10px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            outline: none;
+        }
+        .chat-output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .user-message, .bot-message {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #4CAF50;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <div id="chat">
-        <div id="chat-messages"></div>
-        <input type="text" id="user-input" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
 
-    <script>
-        function sendMessage() {
-            var userInput = document.getElementById("user-input").value;
-            var jsonLoad = {
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": userInput
-                    }
-                ],
-                "model": "default"
-            };
+<div class="container">
+    <h1>Chat Interface with GPT-4</h1>
+    <div class="chat-output" id="chat-output"></div>
+    <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
+    <button id="send-btn" class="btn-send">Send</button>
+</div>
 
-            fetch("/proxy", {
-                method: "POST",
+<script>
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatOutput = document.getElementById('chat-output');
+    let messages = [];
+
+    // Funktion zum Senden von Benutzer-Nachrichten und Empfangen von Bot-Antworten
+    async function sendMessage() {
+        try {
+            const response = await fetch('/ask', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(jsonLoad)
-            })
-            .then(response => response.json())
-            .then(data => displayMessage(data.response))
-            .catch(error => console.error("Error:", error));
+                body: JSON.stringify({ "messages": messages })
+            });
+            const data = await response.json();
+            return data.response;
+        } catch (error) {
+            console.error('Error sending message:', error);
+            return 'Error: Failed to send message.';
         }
+    }
 
-        function displayMessage(message) {
-            var chatMessages = document.getElementById("chat-messages");
-            var responseDiv = document.createElement("div");
-            responseDiv.innerHTML = "<b>Assistant:</b> " + message;
-            chatMessages.appendChild(responseDiv);
+    // Funktion zum Anzeigen von Nachrichten im Chat-Interface
+    function displayMessage(message, role) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add(role + '-message');
+        messageElement.textContent = message;
+        chatOutput.appendChild(messageElement);
+        // Zum Ende des Chat-Outputs scrollen
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+    }
+
+    // Event-Listener für Klick auf Senden-Button
+    sendBtn.addEventListener('click', async () => {
+        const message = userInput.value.trim();
+        if (message !== '') {
+            messages.push({ "role": "user", "content": message });
+            displayMessage("> " + message, 'user');
+            const botResponse = await sendMessage();
+            messages.push({ "role": "assistant", "content": botResponse });
+            displayMessage(botResponse, 'bot');
+            userInput.value = ''; // Eingabefeld leeren
         }
-    </script>
+    });
+
+    // Simulieren des Sendens einer Nachricht beim Drücken von Enter
+    userInput.addEventListener('keypress', async (event) => {
+        if (event.key === 'Enter') {
+            sendBtn.click();
+        }
+    });
+</script>
+
 </body>
 </html>
