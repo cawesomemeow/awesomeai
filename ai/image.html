@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dall-E 3 Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #imageContainer {
+            margin-top: 20px;
+        }
+
+        #errorContainer {
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dall-E 3 Image Generator</h1>
+        <input type="text" id="prompt" placeholder="Enter your prompt here">
+        <button onclick="generateImage()">Generate Image</button>
+        <div id="imageContainer"></div>
+        <div id="errorContainer"></div>
+    </div>
+    <script>
+        function generateImage() {
+            const prompt = document.getElementById('prompt').value;
+            const imageContainer = document.getElementById('imageContainer');
+            const errorContainer = document.getElementById('errorContainer');
+            imageContainer.innerHTML = '';
+            errorContainer.innerHTML = '';
+
+            if (!prompt) {
+                errorContainer.innerText = 'Please enter a prompt.';
+                return;
+            }
+
+            const url = `https://dalle.discord.rocks/generate?prompt=${encodeURIComponent(prompt)}`;
+
+            fetch(url)
+                .then(response => {
+                    if (response.headers.get('Content-Type').includes('image')) {
+                        return response.blob();
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data.response === 'BLOCKED PROMPT OR OUTPUT') {
+                        errorContainer.innerText = 'Blocked prompt or output. Please try a different prompt.';
+                    } else {
+                        const imgURL = URL.createObjectURL(data);
+                        const img = document.createElement('img');
+                        img.src = imgURL;
+                        imageContainer.appendChild(img);
+                    }
+                })
+                .catch(error => {
+                    errorContainer.innerText = `Error: ${error.message}`;
+                });
+        }
+    </script>
+</body>
+</html>
