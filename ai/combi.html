@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Awesome-AI Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mode-switch-buttons {
+            margin-top: 20px;
+        }
+
+        .chat-container,
+        .image-generation-container {
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            overflow: hidden;
+            display: none;
+        }
+
+        .chat-container {
+            display: block;
+        }
+
+        .image-generation-mode .image-generation-container {
+            display: block;
+        }
+
+        .mode-switch-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .mode-switch-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        .image-generation-container textarea {
+            width: calc(100% - 20px);
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .image-generation-container select {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .image-generation-container button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .image-generation-container button:hover {
+            background-color: #45a049;
+        }
+
+        .image-generation-container #generatedContent {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .errorContainer {
+            margin: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body class="chat-mode">
+    <!-- Chat container -->
+    <div class="chat-container" id="chat-output">
+        <!-- Hier kommt der Chat-Inhalt hin -->
+    </div>
+    <!-- Image generation container -->
+    <div class="image-generation-container">
+        <h2>Image Generation Mode</h2>
+        <textarea id="prompt" placeholder="Enter a prompt"></textarea>
+        <select id="generation-mode">
+            <option value="gpt4">GPT-4</option>
+            <option value="dalle">DALL-E</option>
+        </select>
+        <button onclick="generateContent()">Generate Content</button>
+        <div id="generatedContent"></div>
+        <div id="errorContainer"></div>
+    </div>
+    <!-- Mode switch buttons -->
+    <div class="mode-switch-buttons">
+        <button id="chat-mode-btn">Chat Mode</button>
+        <button id="image-generation-mode-btn">Image Generation Mode</button>
+    </div>
+    <script>
+        // JavaScript code bleibt unverändert
+    </script>
+</body>
+</html>
