@@ -94,15 +94,118 @@ Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) 
 ```
 
 #### DALL·E
-```python
-import requests
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dall-E 3 Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-url = "https://api.awesomeai.example.com/dalle"
-headers = {"Authorization": "Bearer YOUR_API_KEY_HERE"}
-data = {"prompt": "Ein futuristisches Stadtbild im Stil von Blade Runner"}
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+        }
 
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #imageContainer {
+            margin-top: 20px;
+        }
+
+        #errorContainer {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dall-E 3 Image Generator</h1>
+        <input type="text" id="prompt" placeholder="Enter your prompt here">
+        <button onclick="generateImage()">Generate Image</button>
+        <div id="imageContainer"></div>
+        <div id="errorContainer"></div>
+    </div>
+
+    <script>
+        function generateImage() {
+            const prompt = document.getElementById('prompt').value;
+            const imageContainer = document.getElementById('imageContainer');
+            const errorContainer = document.getElementById('errorContainer');
+            imageContainer.innerHTML = '';
+            errorContainer.innerHTML = '';
+
+            if (!prompt) {
+                errorContainer.innerText = 'Please enter a prompt.';
+                return;
+            }
+
+            const url = `https://dalle.discord.rocks/generate?prompt=${encodeURIComponent(prompt)}`;
+
+            fetch(url)
+                .then(response => {
+                    if (response.headers.get('Content-Type').includes('image')) {
+                        return response.blob();
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data.response === 'BLOCKED PROMPT OR OUTPUT') {
+                        errorContainer.innerText = 'Blocked prompt or output. Please try a different prompt.';
+                    } else {
+                        const imgURL = URL.createObjectURL(data);
+                        const img = document.createElement('img');
+                        img.src = imgURL;
+                        imageContainer.appendChild(img);
+                    }
+                })
+                .catch(error => {
+                    errorContainer.innerText = `Error: ${error.message}`;
+                });
+        }
+    </script>
+</body>
+</html>
 ```
 
 #### Wetter-API
