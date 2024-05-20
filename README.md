@@ -106,15 +106,7 @@ print(response.json())
 ```
 
 #### Wetter-API
-```python
-import requests
-
-url = "https://api.awesomeai.example.com/weather"
-headers = {"Authorization": "Bearer YOUR_API_KEY"}
-params = {"location": "Berlin"}
-
-response = requests.get(url, headers=headers, params=params)
-print(response.json())
+```-- Dieses Projekt ist noch in Arbeit, vielen Dank für dein Verständnis!
 ```
 
 ## Beiträge
