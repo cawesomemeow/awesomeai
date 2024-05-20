@@ -38,15 +38,60 @@ Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) 
 ### Beispielanfragen
 
 #### GPT-4
-```python
+```html
 import requests
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-4 Chat Interface</title>
+</head>
+<body>
+    <h1>GPT-4 Chat Interface</h1>
+    <form id="chatForm">
+        <label for="userMessage">Enter your message:</label><br>
+        <input type="text" id="userMessage" name="userMessage" required><br><br>
+        <button type="submit">Send</button>
+    </form>
+    <h2>Response:</h2>
+    <p id="response"></p>
 
-url = "https://api.awesomeai.example.com/gpt4"
-headers = {"Authorization": "Bearer YOUR_API_KEY"}
-data = {"prompt": "Schreibe eine Geschichte über einen mutigen Ritter."}
+    <script>
+        document.getElementById('chatForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
+            const userMessage = document.getElementById('userMessage').value;
+
+            const payload = {
+                messages: [
+                    { role: 'user', content: userMessage }
+                ],
+                model: 'gpt-4-turbo-preview'
+            };
+
+            try {
+                const response = await fetch('https://gpt4.discord.rocks/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('response').textContent = data.response || 'No response received.';
+                } else {
+                    document.getElementById('response').textContent = `Error: ${response.status}, ${response.statusText}`;
+                }
+            } catch (error) {
+                document.getElementById('response').textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
 ```
 
 #### DALL·E
