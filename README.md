@@ -42,4 +42,4 @@ Wir hoffen, dass **AwesomeAI** Ihnen bei Ihren Projekten weiterhilft und freuen 
 
 ---
 
-Besuchen Sie uns auf [awesomeai.example.com](https://awesomeai.example.com) für mehr Informationen.
+Besuchen Sie uns auf unserer [Webside](https://awesomeai.pages.dev) für mehr Informationen.
