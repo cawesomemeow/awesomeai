@@ -54,7 +54,7 @@ print(response.json())
 import requests
 
 url = "https://api.awesomeai.example.com/dalle"
-headers = {"Authorization": "Bearer YOUR_API_KEY"}
+headers = {"Authorization": "Bearer YOUR_API_KEY_HERE"}
 data = {"prompt": "Ein futuristisches Stadtbild im Stil von Blade Runner"}
 
 response = requests.post(url, headers=headers, json=data)
