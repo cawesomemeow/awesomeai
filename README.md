@@ -30,6 +30,49 @@ Generieren Sie beeindruckende Bilder aus Textbeschreibungen mit der leistungssta
 ### Wetter-API
 Erhalten Sie aktuelle Wetterinformationen und Vorhersagen für beliebige Standorte weltweit.
 
+## API-Dokumentation
+
+### Authentifizierung
+Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) auch eine API für Ihre Website holen.
+
+### Beispielanfragen
+
+#### GPT-4
+```python
+import requests
+
+url = "https://api.awesomeai.example.com/gpt4"
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+data = {"prompt": "Schreibe eine Geschichte über einen mutigen Ritter."}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+#### DALL·E
+```python
+import requests
+
+url = "https://api.awesomeai.example.com/dalle"
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+data = {"prompt": "Ein futuristisches Stadtbild im Stil von Blade Runner"}
+
+response = requests.post(url, headers=headers, json=data)
+print(response.json())
+```
+
+#### Wetter-API
+```python
+import requests
+
+url = "https://api.awesomeai.example.com/weather"
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+params = {"location": "Berlin"}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.json())
+```
+
 ## Beiträge
 Wir freuen uns über Ihre Beiträge! Wenn Sie eine Funktion hinzufügen oder einen Fehler beheben möchten, erstellen Sie bitte einen Pull Request oder ein Issue.
 
@@ -42,4 +85,4 @@ Wir hoffen, dass **AwesomeAI** Ihnen bei Ihren Projekten weiterhilft und freuen 
 
 ---
 
-Besuchen Sie uns auf unserer [Webside](https://awesomeai.pages.dev) für mehr Informationen.
+Besuchen Sie uns auf unserer [Website](https://awesomeai.pages.dev) für mehr Informationen.
