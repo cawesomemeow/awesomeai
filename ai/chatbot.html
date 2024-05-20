@@ -1,97 +1,151 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-        <link rel="icon" type="image/png" href="../cat.png">
+    <link rel="icon" type="image/png" href="../cat.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awesome-AI Chatbot</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            animation: backgroundAnimation 10s infinite alternate;
         }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #e0f7fa; }
+            100% { background-color: #b2ebf2; }
+        }
+
         .container {
             max-width: 600px;
             width: 100%;
             margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .header {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #00796b;
+            color: #ffffff;
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 2px solid #004d40;
         }
+
         .chat-output {
             padding: 20px;
-            max-height: 300px;
+            flex-grow: 1;
+            max-height: 400px;
             overflow-y: auto;
+            animation: slideIn 0.5s ease-in-out;
         }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         .message-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            animation: messageFadeIn 0.5s ease-in-out;
         }
+
+        @keyframes messageFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .message {
-            padding: 10px;
+            padding: 15px;
             border-radius: 20px;
             word-wrap: break-word;
             margin-bottom: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .user-message {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #00796b;
+            color: #ffffff;
             align-self: flex-end;
+            border-bottom-right-radius: 0;
         }
+
         .bot-message {
-            background-color: #ddd;
-            color: #333;
+            background-color: #e0e0e0;
+            color: #333333;
+            border-bottom-left-radius: 0;
         }
+
         .message-input-container {
             display: flex;
             align-items: center;
             padding: 10px;
-            border-top: 1px solid #ddd;
+            border-top: 2px solid #004d40;
+            background-color: #ffffff;
         }
+
         .message-input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border: 2px solid #004d40;
             border-radius: 25px;
             outline: none;
+            transition: border-color 0.3s;
         }
+
+        .message-input:focus {
+            border-color: #00796b;
+        }
+
         .btn-send {
             padding: 10px 20px;
             margin-left: 10px;
             border: none;
             border-radius: 25px;
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #00796b;
+            color: #ffffff;
             cursor: pointer;
             outline: none;
+            transition: background-color 0.3s;
         }
+
         .btn-send:hover {
-            background-color: #45a049;
+            background-color: #004d40;
         }
+
         footer {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #00796b;
+            color: #ffffff;
             text-align: center;
             padding: 10px 0;
             position: absolute;
             bottom: 0;
             width: 100%;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -172,4 +226,3 @@
 
 </body>
 </html>
-
