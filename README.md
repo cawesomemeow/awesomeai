@@ -38,8 +38,8 @@ Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) 
 ### Beispielanfragen
 
 #### GPT-4
-```python
-impo<!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
