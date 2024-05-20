@@ -40,54 +40,111 @@ Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) 
 #### GPT-4
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPT-4 Chat Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #responseContainer {
+            margin-top: 20px;
+        }
+
+        #errorContainer {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>GPT-4 Chat Interface</h1>
-    <form id="chatForm">
-        <label for="userMessage">Enter your message:</label><br>
-        <input type="text" id="userMessage" name="userMessage" required><br><br>
-        <button type="submit">Send</button>
-    </form>
-    <h2>Response:</h2>
-    <p id="response"></p>
+    <div class="container">
+        <h1>GPT-4 Chat Interface</h1>
+        <input type="text" id="prompt" placeholder="Enter your message here">
+        <button onclick="sendMessage()">Send Message</button>
+        <div id="responseContainer"></div>
+        <div id="errorContainer"></div>
+    </div>
 
     <script>
-        document.getElementById('chatForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+        function sendMessage() {
+            const prompt = document.getElementById('prompt').value;
+            const responseContainer = document.getElementById('responseContainer');
+            const errorContainer = document.getElementById('errorContainer');
+            responseContainer.innerHTML = '';
+            errorContainer.innerHTML = '';
 
-            const userMessage = document.getElementById('userMessage').value;
+            if (!prompt) {
+                errorContainer.innerText = 'Please enter a message.';
+                return;
+            }
 
             const payload = {
                 messages: [
-                    { role: 'user', content: userMessage }
+                    { role: 'user', content: prompt }
                 ],
                 model: 'gpt-4-turbo-preview'
             };
 
-            try {
-                const response = await fetch('https://gpt4.discord.rocks/ask', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    document.getElementById('response').textContent = data.response || 'No response received.';
-                } else {
-                    document.getElementById('response').textContent = `Error: ${response.status}, ${response.statusText}`;
-                }
-            } catch (error) {
-                document.getElementById('response').textContent = `Error: ${error.message}`;
-            }
-        });
+            fetch('https://gpt4.discord.rocks/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer.innerText = data.response || 'No response received.';
+            })
+            .catch(error => {
+                errorContainer.innerText = `Error: ${error.message}`;
+            });
+        }
     </script>
 </body>
 </html>
