@@ -22,7 +22,7 @@
             const prompt = document.getElementById('prompt').value;
 
             try {
-                const response = await fetch(`http://dalle.discord.rocks/ask?prompt=${encodeURIComponent(prompt)}`, {
+                const response = await fetch(`https://dalle.discord.rocks/ask?prompt=${encodeURIComponent(prompt)}`, {
                     method: 'GET'
                 });
 
