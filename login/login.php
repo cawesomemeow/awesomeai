@@ -1,16 +1,23 @@
 <?php
-// Beispielhafte PHP-Verarbeitung der Login-Daten
+// Beispielhafte Benutzer- und E-Mail-Daten
+$valid_users = [
+    "test" => ["password" => "test", "email" => "info.awesomeai@gmail.com"],
+    "test24" => ["password" => "test24", "email" => "info.awesomeai@gmail.com"]
+];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Hier kannst du die Anmeldedaten überprüfen
-    // Zum Beispiel: mit einer Datenbank abgleichen
-
-    // Wenn die Anmeldung erfolgreich ist
-    echo "Anmeldung erfolgreich!";
-    // Wenn die Anmeldung fehlschlägt
-    // echo "Ungültige Anmeldedaten!";
+    if (isset($valid_users[$username])) {
+        if ($valid_users[$username]["password"] === $password && $valid_users[$username]["email"] === $email) {
+            echo "Anmeldung erfolgreich!";
+        } else {
+            echo "Ungültige Anmeldedaten!";
+        }
+    } else {
+        echo "Ungültige Anmeldedaten!";
+    }
 }
 ?>
