@@ -1,4 +1,6 @@
-AuthType Basic
-AuthName "Restricted Area"
-AuthUserFile ../login/.htpasswd
-Require valid-user
+# Blockiert den direkten Zugriff auf PHP-Dateien außer index.php
+<FilesMatch "\.php$">
+  Order Deny,Allow
+  Deny from all
+  Allow from env=REDIRECT_STATUS
+</FilesMatch>
