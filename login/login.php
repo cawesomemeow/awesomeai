@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($valid_users[$username])) {
         if ($valid_users[$username]["password"] === $password && $valid_users[$username]["email"] === $email) {
-            echo "Anmeldung erfolgreich!";
+            header("Location: free-domain.html");
+            exit();
         } else {
             echo "Ungültige Anmeldedaten!";
         }
