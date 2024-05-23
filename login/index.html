@@ -109,36 +109,17 @@
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Verhindert das Standardverhalten des Formulars
 
-      // Benutzerdaten
-      var usernameInput = document.getElementById('username');
-      var passwordInput = document.getElementById('password');
-      var username = usernameInput.value.trim(); // Entfernt führende und nachfolgende Leerzeichen
-      var password = passwordInput.value;
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
-      // Vordefinierte Benutzerdaten
-      var correctUsername = 'admin';
-      var correctPassword = 'awesomeai';
-
-      // Überprüfen, ob Benutzername und Passwort eingegeben wurden
-      if (username === '' || password === '') {
-        alert('Bitte gib Benutzername und Passwort ein.');
-        return;
-      }
-
-      // Überprüfen, ob die eingegebenen Daten mit den vordefinierten übereinstimmen
-      if (username === correctUsername && password === correctPassword) {
-        // Erfolgreiche Anmeldung
-        document.getElementById('message').textContent = 'Anmeldung erfolgreich!';
-        // Weiterleitung zur Startseite nach erfolgreicher Anmeldung
+      if (username === 'admin' && password === 'awesomeai') {
+        alert('Anmeldung erfolgreich!');
         window.location.href = 'startseite.html';
       } else {
-        // Fehler bei der Anmeldung
-        document.getElementById('message').textContent = 'Falscher Benutzername oder Passwort. Bitte versuche es erneut.';
-        // Zurücksetzen der Eingabefelder
-        usernameInput.value = '';
-        passwordInput.value = '';
-        // Fokussieren auf das Benutzername-Eingabefeld
-        usernameInput.focus();
+        alert('Falscher Benutzername oder Passwort. Bitte versuche es erneut.');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('username').focus();
       }
     });
   </script>
