@@ -110,28 +110,42 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Verhindert das Standardverhalten des Formulars
 
-      // Benutzerdaten
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-      var email = document.getElementById("email").value;
+  // Benutzerdaten
+  var usernameInput = document.getElementById('username');
+  var passwordInput = document.getElementById('password');
+  var username = usernameInput.value.trim(); // Entfernt führende und nachfolgende Leerzeichen
+  var password = passwordInput.value;
 
-      // Vordefinierte Benutzerdaten
-      var correctUsername = "admin";
-      var correctPassword = "awesomeai";
-      var correctEmail = "info.awesomeai@gmail.com";
+  // Vordefinierte Benutzerdaten
+  var correctUsername = 'admin';
+  var correctPassword = 'awesomeai';
 
-      // Überprüfen, ob die eingegebenen Daten mit den vordefinierten übereinstimmen
-      if (username === correctUsername && password === correctPassword && email === correctEmail) {
-        // Weiterleitung zur gewünschten Seite
-        window.location.href = free-domain.html";
-      } else {
-        // Wenn die Daten nicht korrekt sind, Fehlermeldung anzeigen
-        alert("Benutzername, Passwort oder E-Mail sind inkorrekt. Bitte versuche es erneut.");
-      }
-    });
+  // Überprüfen, ob Benutzername und Passwort eingegeben wurden
+  if (username === '' || password === '') {
+    alert('Bitte gib Benutzername und Passwort ein.');
+    return;
+  }
+
+  // Überprüfen, ob die eingegebenen Daten mit den vordefinierten übereinstimmen
+  if (username === correctUsername && password === correctPassword) {
+    // Erfolgreiche Anmeldung
+    document.getElementById('message').textContent = 'Anmeldung erfolgreich!';
+    // Weiterleitung zur Startseite nach erfolgreicher Anmeldung
+    window.location.href = 'startseite.html';
+  } else {
+    // Fehler bei der Anmeldung
+    document.getElementById('message').textContent = 'Falscher Benutzername oder Passwort. Bitte versuche es erneut.';
+    // Zurücksetzen der Eingabefelder
+    usernameInput.value = '';
+    passwordInput.value = '';
+    // Fokussieren auf das Benutzername-Eingabefeld
+    usernameInput.focus();
+  }
+});
+
   </script>
 </body>
 </html>
