@@ -297,7 +297,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
             try {
-                const response = await fetch("https://gpt.discord.rocks/ask", {
+                const response = await fetch("https://api.discord.rocks/ask", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
