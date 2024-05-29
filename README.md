@@ -33,7 +33,7 @@ Erhalten Sie aktuelle Wetterinformationen und Vorhersagen für beliebige Standor
 ## API-Dokumentation
 
 ### Authentifizierung
-Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) auch eine API für Ihre Website holen.
+Sie können Sie sich über die Homepage von [AnyAi](https://api.discord.rocks) auch eine API für Ihre Website holen.
 
 ### Beispielanfragen
 
@@ -130,7 +130,7 @@ Sie können Sie sich über die Homepage von [AnyAi](https://gpt4.discord.rocks) 
                 model: 'gpt-4-turbo-preview'
             };
 
-            fetch('https://gpt4.discord.rocks/ask', {
+            fetch('https://api.discord.rocks/ask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
