@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global LLM API Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Global LLM API Interface</h1>
+        <div class="input-section">
+            <textarea id="userPrompt" placeholder="Enter your prompt here..."></textarea>
+            <select id="modelSelect">
+                <option value="claude-3-opus">Claude-3-Opus</option>
+                <option value="gpt-4">GPT-4</option>
+                <option value="gemma-1.1-7b-it">Gemma-1.1-7B-IT</option>
+                <option value="openchat_3.5">OpenChat 3.5</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button id="sendButton">Send</button>
+        </div>
+        <div class="response-section">
+            <h2>Response</h2>
+            <div id="responseContent"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
