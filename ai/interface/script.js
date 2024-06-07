@@ -23,7 +23,7 @@ document.getElementById('sendButton').addEventListener('click', () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'any-a1897588df79331e'
+            'Authorization': 'any-dc611d6b65bb6008'
         },
         body: JSON.stringify(payload)
     })
